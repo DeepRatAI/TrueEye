@@ -245,7 +245,7 @@ make dev-info
 
 AI, Software & Systems Engineer · Prompt Engineer · Full‑Stack Developer
 
-🔗 [Web](https://deeprat.tech) | [Hugging Face](https://huggingface.co/DeepRat) | [GitHub](https://github.com/DeepRatAI) | [LinkedIn](https://www.linkedin.com/in/deeprat) | [Medium](https://medium.com/@deeprat)
+🔗 [Web](https://deeprat.tech) | [Hugging Face](https://huggingface.co/DeepRat) | [GitHub](https://github.com/DeepRatAI) | [LinkedIn](https://www.linkedin.com/in/gonzalo-romero-b9b5b4355) | [Medium](https://medium.com/@hermmes.ia)
 
 ## 🧠 License
 
