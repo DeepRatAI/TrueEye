@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueEye</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
+        <header class="mb-6 text-center">
+            <h1 class="text-4xl font-bold">TrueEye</h1>
+            <p class="text-gray-600 dark:text-gray-300">Sistema Inteligente de Alfabetización Mediática</p>
+        </header>
+        <main>
+            <div class="flex flex-col gap-4 mb-4">
+                <input id="input-url" type="url" placeholder="Ingrese la URL a analizar..." class="px-4 py-3 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-800" />
+                <button id="analyze-btn" class="px-4 py-3 bg-emerald-500 text-white rounded hover:bg-emerald-600 disabled:opacity-50">Analizar</button>
+                <div id="error-message" class="text-red-600 hidden"></div>
+            </div>
+            <div id="loading" class="hidden mb-4 text-center">
+                <p class="animate-pulse">Analizando contenido...</p>
+            </div>
+            <div id="result-container" class="hidden">
+                <h2 class="text-2xl font-semibold mb-2">Resultado del Análisis</h2>
+                <div id="result" class="prose dark:prose-invert"></div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const inputUrl = document.getElementById('input-url');
+        const resultContainer = document.getElementById('result-container');
+        const resultDiv = document.getElementById('result');
+        const loadingDiv = document.getElementById('loading');
+        const errorMessage = document.getElementById('error-message');
+
+        analyzeBtn.addEventListener('click', async () => {
+            const url = inputUrl.value.trim();
+            if (!url) {
+                showError('Por favor ingrese una URL');
+                return;
+            }
+            if (!isValidUrl(url)) {
+                showError('Por favor ingrese una URL válida (incluya http:// o https://)');
+                return;
+            }
+            clearError();
+            startAnalysis();
+            try {
+                const response = await fetch(window.location.origin + '/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url })
+                });
+                if (!response.ok) {
+                    throw new Error(`El servidor retornó ${response.status}`);
+                }
+                const data = await response.json();
+                if (!data.success) {
+                    showError(data.result || 'Ocurrió un error durante el análisis.');
+                    stopAnalysis();
+                    return;
+                }
+                resultDiv.innerHTML = marked.parse(data.result);
+                resultContainer.classList.remove('hidden');
+                stopAnalysis();
+            } catch (error) {
+                showError('Error al analizar la URL. Por favor intente más tarde.');
+                stopAnalysis();
+            }
+        });
+
+        function startAnalysis() {
+            loadingDiv.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+            analyzeBtn.disabled = true;
+        }
+
+        function stopAnalysis() {
+            loadingDiv.classList.add('hidden');
+            analyzeBtn.disabled = false;
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.remove('hidden');
+        }
+
+        function clearError() {
+            errorMessage.textContent = '';
+            errorMessage.classList.add('hidden');
+        }
+
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
