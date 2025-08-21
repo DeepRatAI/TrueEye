@@ -1,5 +1,11 @@
 ![TrueEye Banner](banner.gif)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.68+-green.svg)](https://fastapi.tiangolo.com)
+[![LangFlow Ready](https://img.shields.io/badge/LangFlow-Ready-purple.svg)](https://github.com/logspace-ai/langflow)
+[![NixOS](https://img.shields.io/badge/NixOS-Reproducible-blue.svg)](https://nixos.org/)
+
 # 🧿 TrueEye — Intelligent Media Literacy System
 
 **TrueEye** is an AI‑powered tool designed to analyze news articles and web
