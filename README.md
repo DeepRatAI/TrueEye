@@ -253,12 +253,3 @@ AI, Software & Systems Engineer · Prompt Engineer · Full‑Stack Developer
 
 🔗 [Web](https://deeprat.tech) | [Hugging Face](https://huggingface.co/DeepRat) | [GitHub](https://github.com/DeepRatAI) | [LinkedIn](https://www.linkedin.com/in/gonzalo-romero-b9b5b4355) | [Medium](https://medium.com/@hermmes.ia)
 
-## 🧠 License
-
-This project is licensed under the **Creative Commons Attribution‑NonCommercial
-4.0 International (CC BY‑NC 4.0)** license. You are free to share and adapt
-the code as long as you credit the author (**DeepRat**) and do not use it
-for commercial purposes without permission.
-
-For commercial use or extended licensing, please contact
-[info@deeprat.tech](mailto:info@deeprat.tech).
